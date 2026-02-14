@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Home",
+    "url": "/en/index.html",
+    "excerpt": "Main overview",
+    "keywords": "home institute"
+  },
+  {
+    "title": "About",
+    "url": "/en/about.html",
+    "excerpt": "About institute",
+    "keywords": "about"
+  },
+  {
+    "title": "Goals",
+    "url": "/en/goals.html",
+    "excerpt": "Goals and vision",
+    "keywords": "goals vision"
+  },
+  {
+    "title": "Activity",
+    "url": "/en/activity.html",
+    "excerpt": "Activity areas",
+    "keywords": "activity programs"
+  },
+  {
+    "title": "Education",
+    "url": "/en/education.html",
+    "excerpt": "Education",
+    "keywords": "education courses"
+  },
+  {
+    "title": "Publications",
+    "url": "/en/publications.html",
+    "excerpt": "Catalog",
+    "keywords": "publications books"
+  },
+  {
+    "title": "Bridge",
+    "url": "/en/bridge.html",
+    "excerpt": "Cultural bridge",
+    "keywords": "bridge culture"
+  },
+  {
+    "title": "Contact",
+    "url": "/en/contact.html",
+    "excerpt": "Contact form",
+    "keywords": "contact email"
+  },
+  {
+    "title": "Privacy",
+    "url": "/en/privacy.html",
+    "excerpt": "Privacy notice",
+    "keywords": "privacy data"
+  },
+  {
+    "title": "Downloads",
+    "url": "/en/downloads.html",
+    "excerpt": "PDF resources",
+    "keywords": "downloads pdf"
+  },
+  {
+    "title": "Events",
+    "url": "/en/events/index.html",
+    "excerpt": "Events list",
+    "keywords": "events workshop conference"
+  },
+  {
+    "title": "News",
+    "url": "/en/news/index.html",
+    "excerpt": "News list",
+    "keywords": "news blog updates"
+  }
+]
