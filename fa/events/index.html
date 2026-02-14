@@ -58,20 +58,34 @@
     <div class="container reveal">
       <h1>رویدادها</h1>
       <p>برنامه‌های عمومی، کارگاه‌ها و قالب‌های گفت‌وگویی انستیتو سعدی در برلین.</p>
-      <div class="cards-3">
-        <article class="card">
+      <div class="events-tools" data-events-hub>
+        <div class="events-filters">
+          <div class="field">
+            <label for="event-month-filter">ماه</label>
+            <select id="event-month-filter" data-filter-month></select>
+          </div>
+          <div class="field">
+            <label for="event-type-filter">نوع</label>
+            <select id="event-type-filter" data-filter-type></select>
+          </div>
+        </div>
+        <div class="mini-calendar" data-mini-calendar aria-live="polite"></div>
+        <p class="notice" data-events-empty hidden>رویدادی با این فیلتر پیدا نشد.</p>
+      </div>
+      <div class="cards-3" data-event-list>
+        <article class="card" data-event-date="2026-01-15" data-event-type="salon" data-event-type-label="نشست">
           <p class="meta">2026-01-15</p>
           <h3>نشست سالنی</h3>
           <p>گفت‌وگوی عمومی درباره ادبیات، تعلق اجتماعی و گفت‌وگوی بین‌فرهنگی.</p>
           <a href="2026-01-salon.html">جزئیات</a>
         </article>
-        <article class="card">
+        <article class="card" data-event-date="2026-03-05" data-event-type="workshop" data-event-type-label="کارگاه">
           <p class="meta">2026-03-05</p>
           <h3>کارگاه ترجمه</h3>
           <p>تمرین کاربردی ترجمه فارسی-آلمانی برای دانشجویان و متخصصان.</p>
           <a href="2026-03-workshop.html">جزئیات</a>
         </article>
-        <article class="card">
+        <article class="card" data-event-date="2026-06-20" data-event-type="conference" data-event-type-label="همایش">
           <p class="meta">2026-06-20</p>
           <h3>همایش سالانه</h3>
           <p>تبادل نهادی درباره آموزش، مهاجرت و مشارکت فرهنگی.</p>

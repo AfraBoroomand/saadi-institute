@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Three thinkers in dialogue">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9f3ea"/>
+      <stop offset="100%" stop-color="#e3d2b5"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#ffffffcc"/>
+      <stop offset="100%" stop-color="#ffffff00"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#halo)"/>
+
+  <g transform="translate(210 190)">
+    <circle cx="200" cy="250" r="170" fill="#f6ead8" stroke="#b89a70" stroke-width="10"/>
+    <circle cx="200" cy="220" r="72" fill="none" stroke="#4c4438" stroke-width="8"/>
+    <path d="M115 220 C140 180 260 180 285 220" fill="none" stroke="#8d6b45" stroke-width="8"/>
+    <path d="M135 282 C162 316 238 316 265 282" fill="none" stroke="#7a5a38" stroke-width="7"/>
+    <path d="M110 420 C125 340 170 300 200 300 C230 300 275 340 290 420" fill="none" stroke="#6b4f31" stroke-width="9"/>
+  </g>
+
+  <g transform="translate(590 130)">
+    <circle cx="210" cy="285" r="210" fill="#f9f1e5" stroke="#9f8059" stroke-width="12"/>
+    <circle cx="210" cy="240" r="88" fill="none" stroke="#2f2a22" stroke-width="10"/>
+    <path d="M118 228 C156 154 264 154 302 228" fill="none" stroke="#8d6b45" stroke-width="10"/>
+    <path d="M142 302 C172 342 248 342 278 302" fill="none" stroke="#7a5a38" stroke-width="8"/>
+    <path d="M85 500 C112 370 170 322 210 322 C250 322 308 370 335 500" fill="none" stroke="#6b4f31" stroke-width="12"/>
+    <path d="M155 170 Q210 104 265 170" fill="none" stroke="#c49a61" stroke-width="7"/>
+  </g>
+
+  <g transform="translate(1050 190)">
+    <circle cx="200" cy="250" r="170" fill="#f6ead8" stroke="#b89a70" stroke-width="10"/>
+    <circle cx="200" cy="220" r="72" fill="none" stroke="#4c4438" stroke-width="8"/>
+    <path d="M115 220 C140 180 260 180 285 220" fill="none" stroke="#8d6b45" stroke-width="8"/>
+    <path d="M133 282 C162 320 238 320 267 282" fill="none" stroke="#7a5a38" stroke-width="7"/>
+    <path d="M110 420 C125 340 170 300 200 300 C230 300 275 340 290 420" fill="none" stroke="#6b4f31" stroke-width="9"/>
+  </g>
+
+  <g fill="none" stroke="#c9a673" stroke-width="4" opacity="0.9">
+    <path d="M455 440 Q800 520 1145 440"/>
+    <path d="M465 500 Q800 575 1135 500"/>
+  </g>
+</svg>

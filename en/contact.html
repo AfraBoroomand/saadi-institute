@@ -68,6 +68,38 @@
       </article>
     </div>
   </section>
+
+  <section class="section-block">
+    <div class="container reveal">
+      <h2>Send a message</h2>
+      <form class="card" data-contact-form data-fallback-email="info@saadi-institute.de" data-err-required="This field is required." data-err-email="Please enter a valid email address." data-success="Thank you. Your message has been sent." data-fail="We could not send your message. Please email us directly." data-no-endpoint="Form endpoint is not configured; your email app has been opened.">
+        <div class="grid-2">
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" required>
+            <small data-error="name"></small>
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" required>
+            <small data-error="email"></small>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contact-subject">Subject</label>
+          <input id="contact-subject" name="subject" type="text" required>
+          <small data-error="subject"></small>
+        </div>
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required></textarea>
+          <small data-error="message"></small>
+        </div>
+        <button class="btn primary" type="submit">Send message</button>
+        <p class="notice" data-form-notice data-fallback="Form endpoint not configured. You can contact us via email."></p>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -84,6 +116,7 @@
   </div>
 </footer>
 
+<script src="../js/form.js" defer></script>
 <script src="../js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Downloads and digital resources">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9f3ea"/>
+      <stop offset="100%" stop-color="#e5d3b7"/>
+    </linearGradient>
+    <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d5bc96"/>
+      <stop offset="100%" stop-color="#a88456"/>
+    </linearGradient>
+    <linearGradient id="file" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffdfa"/>
+      <stop offset="100%" stop-color="#efe2cc"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="250" cy="170" r="190" fill="#ffffff66"/>
+  <circle cx="1360" cy="220" r="210" fill="#ffffff50"/>
+
+  <g transform="translate(170 230)">
+    <path d="M0 110 C0 78 26 52 58 52 H292 L350 0 H560 C594 0 620 26 620 58 V120 H0 Z" fill="#c7a675"/>
+    <rect x="0" y="110" width="620" height="360" rx="26" fill="url(#folder)"/>
+
+    <rect x="90" y="170" width="440" height="250" rx="18" fill="url(#file)" stroke="#ccb89a" stroke-width="8"/>
+    <path d="M172 248 H450" stroke="#d0b28a" stroke-width="14" stroke-linecap="round"/>
+    <path d="M172 292 H450" stroke="#d0b28a" stroke-width="14" stroke-linecap="round"/>
+    <path d="M172 336 H350" stroke="#d0b28a" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(830 160)">
+    <rect x="0" y="220" width="610" height="470" rx="30" fill="#fffaf1" stroke="#ccb89a" stroke-width="9"/>
+    <path d="M305 90 V500" stroke="#6f5132" stroke-width="24" stroke-linecap="round"/>
+    <path d="M200 390 L305 500 L410 390" fill="none" stroke="#6f5132" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="112" y="560" width="386" height="54" rx="22" fill="#d7be99"/>
+  </g>
+</svg>

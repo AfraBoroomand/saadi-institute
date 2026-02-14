@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Vision and goals with growth path">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9f3ea"/>
+      <stop offset="100%" stop-color="#e6d5ba"/>
+    </linearGradient>
+    <linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d9be97"/>
+      <stop offset="100%" stop-color="#9f8059"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="250" cy="190" r="170" fill="#ffffff66"/>
+  <circle cx="1360" cy="230" r="220" fill="#ffffff55"/>
+
+  <path d="M110 770 C290 640 390 610 520 620 C660 632 790 690 940 660 C1100 628 1230 530 1490 360" fill="none" stroke="url(#pathGrad)" stroke-width="74" stroke-linecap="round"/>
+  <path d="M110 770 C290 640 390 610 520 620 C660 632 790 690 940 660 C1100 628 1230 530 1490 360" fill="none" stroke="#f7efdf" stroke-width="12" stroke-linecap="round" stroke-dasharray="12 20"/>
+
+  <g transform="translate(980 160)">
+    <circle cx="250" cy="220" r="165" fill="#fffaf1" stroke="#9f8059" stroke-width="11"/>
+    <circle cx="250" cy="220" r="116" fill="none" stroke="#b89a70" stroke-width="8"/>
+    <path d="M250 86 V354" stroke="#4c4438" stroke-width="8" stroke-linecap="round"/>
+    <path d="M116 220 H384" stroke="#4c4438" stroke-width="8" stroke-linecap="round"/>
+    <path d="M250 108 L280 220 L250 332 L220 220 Z" fill="#c49a61" stroke="#6f5132" stroke-width="6"/>
+    <circle cx="250" cy="220" r="24" fill="#6f5132"/>
+  </g>
+
+  <g fill="#6b4f31">
+    <circle cx="200" cy="740" r="15"/>
+    <circle cx="490" cy="650" r="15"/>
+    <circle cx="760" cy="680" r="15"/>
+    <circle cx="1020" cy="645" r="15"/>
+    <circle cx="1235" cy="548" r="15"/>
+  </g>
+
+  <path d="M1465 356 L1410 358 L1438 402 Z" fill="#6f5132"/>
+</svg>

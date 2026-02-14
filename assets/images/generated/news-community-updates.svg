@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="News and community updates">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9f3ea"/>
+      <stop offset="100%" stop-color="#e5d3b7"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffdfa"/>
+      <stop offset="100%" stop-color="#f4e8d6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="240" cy="160" r="180" fill="#ffffff66"/>
+  <circle cx="1360" cy="180" r="220" fill="#ffffff50"/>
+
+  <g transform="translate(150 170)">
+    <rect x="0" y="0" width="1280" height="560" rx="26" fill="url(#card)" stroke="#ccb89a" stroke-width="8"/>
+
+    <rect x="48" y="52" width="350" height="214" rx="16" fill="#e8d7bc"/>
+    <rect x="422" y="52" width="350" height="214" rx="16" fill="#e8d7bc"/>
+    <rect x="796" y="52" width="436" height="214" rx="16" fill="#e8d7bc"/>
+
+    <rect x="48" y="294" width="520" height="218" rx="16" fill="#efe2cc"/>
+    <rect x="596" y="294" width="636" height="218" rx="16" fill="#efe2cc"/>
+
+    <g stroke="#b89a70" stroke-width="12" stroke-linecap="round">
+      <path d="M86 98 H330"/>
+      <path d="M86 140 H330"/>
+      <path d="M86 182 H250"/>
+
+      <path d="M460 98 H704"/>
+      <path d="M460 140 H704"/>
+      <path d="M460 182 H624"/>
+
+      <path d="M836 98 H1180"/>
+      <path d="M836 140 H1180"/>
+      <path d="M836 182 H1046"/>
+
+      <path d="M90 342 H522"/>
+      <path d="M90 386 H522"/>
+      <path d="M90 430 H420"/>
+
+      <path d="M638 342 H1190"/>
+      <path d="M638 386 H1190"/>
+      <path d="M638 430 H1000"/>
+    </g>
+  </g>
+
+  <g fill="#6f5132">
+    <circle cx="300" cy="770" r="12"/>
+    <circle cx="350" cy="770" r="12"/>
+    <circle cx="400" cy="770" r="12"/>
+  </g>
+</svg>

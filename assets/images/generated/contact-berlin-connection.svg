@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Contact and communication in Berlin">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8f2e8"/>
+      <stop offset="100%" stop-color="#e2cfb0"/>
+    </linearGradient>
+    <linearGradient id="skyline" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8f724d"/>
+      <stop offset="100%" stop-color="#5f4630"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="220" cy="160" r="170" fill="#ffffff66"/>
+  <circle cx="1360" cy="150" r="220" fill="#ffffff55"/>
+
+  <g fill="url(#skyline)">
+    <rect x="120" y="520" width="70" height="170"/>
+    <rect x="205" y="470" width="90" height="220"/>
+    <rect x="320" y="430" width="80" height="260"/>
+    <rect x="420" y="500" width="120" height="190"/>
+    <rect x="560" y="450" width="90" height="240"/>
+    <rect x="675" y="390" width="55" height="300"/>
+    <rect x="750" y="430" width="130" height="260"/>
+    <rect x="905" y="485" width="100" height="205"/>
+    <rect x="1030" y="420" width="75" height="270"/>
+    <rect x="1125" y="470" width="95" height="220"/>
+    <rect x="1245" y="515" width="90" height="175"/>
+    <rect x="1360" y="450" width="110" height="240"/>
+  </g>
+
+  <rect x="0" y="690" width="1600" height="210" fill="#d9be97"/>
+
+  <g transform="translate(350 170)">
+    <rect x="0" y="30" width="470" height="300" rx="26" fill="#fffdfa" stroke="#ccb89a" stroke-width="8"/>
+    <path d="M40 96 L235 214 L430 96" fill="none" stroke="#b89a70" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="40" y="84" width="390" height="220" rx="16" fill="none" stroke="#d8c7ae" stroke-width="6"/>
+  </g>
+
+  <g transform="translate(980 160)">
+    <circle cx="180" cy="190" r="116" fill="#fffaf1" stroke="#9f8059" stroke-width="10"/>
+    <path d="M180 108 C137 108 102 143 102 186 C102 250 180 316 180 316 C180 316 258 250 258 186 C258 143 223 108 180 108 Z" fill="#d1b387" stroke="#6f5132" stroke-width="8"/>
+    <circle cx="180" cy="186" r="32" fill="#fff8ef" stroke="#6f5132" stroke-width="6"/>
+  </g>
+
+  <path d="M780 302 C850 278 920 285 992 324" fill="none" stroke="#c49a61" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 12"/>
+</svg>

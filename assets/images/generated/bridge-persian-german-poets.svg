@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Bridge of poets and cultural memory">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8f2e8"/>
+      <stop offset="100%" stop-color="#e2cfaf"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e6d4b6"/>
+      <stop offset="100%" stop-color="#ceb089"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect y="620" width="1600" height="280" fill="url(#floor)"/>
+
+  <g fill="none" stroke="#b79260" stroke-width="7" opacity="0.45">
+    <path d="M120 700 H1480"/>
+    <path d="M120 760 H1480"/>
+    <path d="M120 820 H1480"/>
+  </g>
+
+  <g transform="translate(210 170)">
+    <rect x="0" y="140" width="320" height="420" rx="16" fill="#fdf8ef" stroke="#b89a70" stroke-width="8"/>
+    <circle cx="160" cy="250" r="86" fill="none" stroke="#4c4438" stroke-width="8"/>
+    <path d="M62 250 C95 190 225 190 258 250" fill="none" stroke="#876943" stroke-width="8"/>
+    <path d="M90 320 C120 364 200 364 230 320" fill="none" stroke="#6f5132" stroke-width="7"/>
+    <path d="M70 500 C100 390 130 350 160 350 C190 350 220 390 250 500" fill="none" stroke="#6b4f31" stroke-width="9"/>
+    <rect x="48" y="84" width="224" height="58" rx="12" fill="#ead8bd"/>
+  </g>
+
+  <g transform="translate(640 120)">
+    <rect x="0" y="110" width="320" height="450" rx="16" fill="#fffaf1" stroke="#9f8059" stroke-width="8"/>
+    <circle cx="160" cy="238" r="98" fill="none" stroke="#2f2a22" stroke-width="10"/>
+    <path d="M50 232 C90 150 230 150 270 232" fill="none" stroke="#876943" stroke-width="10"/>
+    <path d="M88 314 C120 362 200 362 232 314" fill="none" stroke="#6f5132" stroke-width="8"/>
+    <path d="M55 508 C94 380 126 342 160 342 C194 342 226 380 265 508" fill="none" stroke="#6b4f31" stroke-width="11"/>
+    <rect x="42" y="42" width="236" height="68" rx="12" fill="#d7c09e"/>
+  </g>
+
+  <g transform="translate(1070 170)">
+    <rect x="0" y="140" width="320" height="420" rx="16" fill="#fdf8ef" stroke="#b89a70" stroke-width="8"/>
+    <circle cx="160" cy="250" r="86" fill="none" stroke="#4c4438" stroke-width="8"/>
+    <path d="M62 250 C95 190 225 190 258 250" fill="none" stroke="#876943" stroke-width="8"/>
+    <path d="M90 320 C120 364 200 364 230 320" fill="none" stroke="#6f5132" stroke-width="7"/>
+    <path d="M70 500 C100 390 130 350 160 350 C190 350 220 390 250 500" fill="none" stroke="#6b4f31" stroke-width="9"/>
+    <rect x="48" y="84" width="224" height="58" rx="12" fill="#ead8bd"/>
+  </g>
+
+  <path d="M430 660 Q800 560 1170 660" fill="none" stroke="#876943" stroke-width="10"/>
+  <path d="M430 700 Q800 600 1170 700" fill="none" stroke="#9f8059" stroke-width="6"/>
+</svg>

@@ -57,20 +57,34 @@
     <div class="container reveal">
       <h1>Events</h1>
       <p>Public programs, workshops, and dialogue formats organized by the Saadi Institute in Berlin.</p>
-      <div class="cards-3">
-        <article class="card">
+      <div class="events-tools" data-events-hub>
+        <div class="events-filters">
+          <div class="field">
+            <label for="event-month-filter">Month</label>
+            <select id="event-month-filter" data-filter-month></select>
+          </div>
+          <div class="field">
+            <label for="event-type-filter">Type</label>
+            <select id="event-type-filter" data-filter-type></select>
+          </div>
+        </div>
+        <div class="mini-calendar" data-mini-calendar aria-live="polite"></div>
+        <p class="notice" data-events-empty hidden>No events match this filter.</p>
+      </div>
+      <div class="cards-3" data-event-list>
+        <article class="card" data-event-date="2026-01-15" data-event-type="salon" data-event-type-label="Salon">
           <p class="meta">2026-01-15</p>
           <h3>Salon Evening</h3>
           <p>Public discussion on literature, social belonging, and intercultural dialogue.</p>
           <a href="2026-01-salon.html">Details</a>
         </article>
-        <article class="card">
+        <article class="card" data-event-date="2026-03-05" data-event-type="workshop" data-event-type-label="Workshop">
           <p class="meta">2026-03-05</p>
           <h3>Translation Workshop</h3>
           <p>Applied Persian-German translation practice for students and professionals.</p>
           <a href="2026-03-workshop.html">Details</a>
         </article>
-        <article class="card">
+        <article class="card" data-event-date="2026-06-20" data-event-type="conference" data-event-type-label="Conference">
           <p class="meta">2026-06-20</p>
           <h3>Annual Conference</h3>
           <p>Institutional exchange on education, migration, and cultural participation.</p>
