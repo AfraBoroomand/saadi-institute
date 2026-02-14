@@ -1,0 +1,1 @@
+Placeholder folder for phase 2 News/Blog content.\n
