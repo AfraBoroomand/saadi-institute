@@ -12,7 +12,7 @@
       var langs = ['fa', 'de', 'en'];
       var remember = localStorage.getItem('saadi-lang-remember') === 'true';
       var lang = localStorage.getItem('saadi-lang');
-      var target = remember && langs.indexOf(lang) !== -1 ? '/' + lang + '/' : '/fa/';
+      var target = remember && langs.indexOf(lang) !== -1 ? lang + '/' : 'fa/';
       window.location.replace(target);
     }());
   </script>
@@ -23,10 +23,10 @@
     <noscript>
       <p>JavaScript is disabled. Continue to:</p>
       <ul>
-        <li><a href="/fa/">فارسی</a></li>
-        <li><a href="/de/">Deutsch</a></li>
-        <li><a href="/en/">English</a></li>
-        <li><a href="/language.html">Language chooser</a></li>
+        <li><a href="fa/">فارسی</a></li>
+        <li><a href="de/">Deutsch</a></li>
+        <li><a href="en/">English</a></li>
+        <li><a href="language.html">Language chooser</a></li>
       </ul>
     </noscript>
   </main>
