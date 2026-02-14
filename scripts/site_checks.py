@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -49,6 +50,10 @@ def target_exists(path: Path) -> bool:
     return False
 
 
+def has_pattern(text: str, pattern: str) -> bool:
+    return re.search(pattern, text, flags=re.IGNORECASE | re.DOTALL) is not None
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -61,6 +66,44 @@ def main() -> int:
                 errors.append(f"Missing canonical: {rel}")
             if '<h1' not in text:
                 errors.append(f"Missing h1: {rel}")
+            for hreflang in ('hreflang="fa"', 'hreflang="de"', 'hreflang="en"', 'hreflang="x-default"'):
+                if hreflang not in text:
+                    errors.append(f"Missing hreflang tag ({hreflang}): {rel}")
+            if '<link rel="icon"' not in text:
+                errors.append(f"Missing icon tag: {rel}")
+            if 'fonts.googleapis.com' not in text:
+                errors.append(f"Missing webfont include: {rel}")
+            if not has_pattern(text, r'<main[^>]*\bid="main"'):
+                errors.append(f"Missing main id (#main): {rel}")
+
+            if 'class="lang-switch"' in text:
+                if 'id="lang-switch"' not in text:
+                    errors.append(f"Language switch missing id: {rel}")
+                if 'for="lang-switch"' not in text:
+                    errors.append(f"Language switch missing label: {rel}")
+
+            if 'class="main-nav"' in text and not has_pattern(text, r'<nav[^>]*class="[^"]*\bmain-nav\b[^"]*"[^>]*aria-label='):
+                errors.append(f"Main nav missing aria-label: {rel}")
+
+            if 'class="nav-toggle"' in text:
+                if not has_pattern(text, r'<button[^>]*class="[^"]*\bnav-toggle\b[^"]*"[^>]*aria-label='):
+                    errors.append(f"Nav toggle missing aria-label: {rel}")
+                if not has_pattern(text, r'<button[^>]*class="[^"]*\bnav-toggle\b[^"]*"[^>]*aria-expanded='):
+                    errors.append(f"Nav toggle missing aria-expanded: {rel}")
+
+            if rel.startswith('de/'):
+                for token in ('Skip to content', 'Skip to main content', 'Page not found', 'Back home'):
+                    if token in text:
+                        errors.append(f"Unlocalized DE content ({token}): {rel}")
+            if rel.startswith('fa/'):
+                for token in ('Skip to content', 'Skip to main content', 'Page not found', 'Back home'):
+                    if token in text:
+                        errors.append(f"Unlocalized FA content ({token}): {rel}")
+
+        if 'slider.js' in text and 'hero-slider' not in text:
+            errors.append(f"Unused slider.js include: {rel}")
+        if 'form.js' in text and 'data-contact-form' not in text:
+            errors.append(f"Unused form.js include: {rel}")
 
         # Baseline SEO metadata checks for all pages.
         required_markers = (
@@ -83,6 +126,8 @@ def main() -> int:
         parser = LinkParser()
         parser.feed(text)
         for href in parser.links:
+            if 'assets/downloads/' in href and not href.startswith('/assets/downloads/'):
+                errors.append(f"Non-root downloads link in {rel}: {href}")
             if not is_local_link(href):
                 continue
             target = resolve_target(file_path, href)

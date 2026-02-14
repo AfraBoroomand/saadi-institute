@@ -162,14 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
       const rawHref = anchor.getAttribute('href') || '';
+      const hrefPath = rawHref.split('#', 1)[0].split('?', 1)[0];
       if (!rawHref || rawHref.startsWith('/') || rawHref.startsWith('#')) return;
       if (rawHref.startsWith('mailto:') || rawHref.startsWith('tel:') || rawHref.startsWith('javascript:')) return;
       if (/^[a-z][a-z0-9+.-]*:/i.test(rawHref)) return;
+      // Keep static assets and non-HTML files untouched (e.g. PDFs in downloads).
+      if (/\.[a-z0-9]+$/i.test(hrefPath) && !hrefPath.toLowerCase().endsWith('.html')) return;
 
       const resolved = new URL(rawHref, window.location.href);
       if (resolved.origin !== window.location.origin) return;
 
       const resolvedPathWithinBase = stripBasePrefix(resolved.pathname);
+      if (/^\/(?:assets|css|js|data)\//.test(resolvedPathWithinBase)) return;
       const langPrefix = `/${current.lang}/`;
       if (resolvedPathWithinBase.startsWith(langPrefix)) return;
       if (LANGS.some((lang) => resolvedPathWithinBase.startsWith(`/${lang}/`))) return;
