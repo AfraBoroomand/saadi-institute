@@ -86,7 +86,14 @@ img { max-width: 100%; display: block; }
 .prose-block p { margin: .4rem 0 .95rem; }
 
 .goal-list { margin: .4rem 0 0; display: grid; gap: .55rem; list-style: none; padding: 0; }
-.goal-list li { background: #fbf7f0; border: 1px solid #dfd1bb; border-radius: 10px; padding: .62rem .85rem .62rem 2rem; position: relative; }
+.goal-list li {
+  background: #fbf7f0;
+  border: 1px solid #dfd1bb;
+  border-radius: 10px;
+  padding: .62rem .85rem;
+  padding-inline-start: 2rem;
+  position: relative;
+}
 .minimal-icons li::before { content: "•"; color: #876943; position: absolute; inset-inline-start: .85rem; font-size: 1.1rem; top: .55rem; }
 
 .split-feature .split-grid { display: grid; grid-template-columns: minmax(280px, 44%) 1fr; gap: 1.25rem; align-items: stretch; }
