@@ -1,71 +1,54 @@
 # Saadi Institute Static Website
 
-Production-ready static website (no build step), deployable to shared hosting via FTP.
+Dependency-free static website (HTML/CSS/JS only), deployable on shared hosting (e.g., STRATO) via FTP.
 
-## Structure
-- `index.html` root redirect page (sends visitors to remembered language or `/fa/`)
-- `language.html` language chooser
-- `fa/`, `de/`, `en/` full page sets
-- shared assets in `assets/`, styles in `css/`, scripts in `js/`
+## Project structure
+- `index.html` root redirect
+- `fa/`, `de/`, `en/` language pages
+- `fa/news/`, `de/news/`, `en/news/` static blog pages
+- `fa/events/`, `de/events/`, `en/events/` static events pages
+- `assets/downloads/` PDF resources
+- `data/*-search.json` per-language search index
 
-## Replace logo and hero images
-1. Replace `assets/logo.svg` with your final logo (prefer square image).
-2. Hero currently uses SVG placeholders in `assets/hero/slide-1.svg ... slide-4.svg`.
-3. You can switch to JPG by either:
-   - replacing image references in each language `index.html`, or
-   - replacing `slide-*.svg` references with your own `slide-*.jpg` files.
+## Add a new News post
+1. Copy one of the existing files in `/<lang>/news/` (e.g. `2026-01-welcome.html`).
+2. Rename it to your date slug format: `YYYY-MM-topic.html`.
+3. Edit title/date/body in that file.
+4. Add a card entry to `/<lang>/news/index.html` linking to the new post.
+5. Optionally add it to `data/<lang>-search.json`.
 
-## Edit text quickly
-- Language pages live in:
-  - Persian: `fa/*.html`
-  - German: `de/*.html`
-  - English scaffold: `en/*.html`
-- Main menu is in each page header; keep file names identical across languages so language switching works.
+## Add a new Event
+1. Copy `/<lang>/events/event-template.html`.
+2. Rename to a dated slug (e.g. `2026-09-dialogue.html`).
+3. Fill title, date/time, location and details.
+4. Add a card item to `/<lang>/events/index.html`.
+5. Optionally add the event page to `data/<lang>-search.json`.
 
-## Formspree configuration
-- Edit `js/form.js` and replace:
-  - `https://formspree.io/f/XXXXXXXX`
-  with your real Formspree endpoint.
-- If left unchanged, form shows a warning and users can use the `mailto` fallback.
+## Replace PDF downloads
+- Replace files in `assets/downloads/` with real PDFs:
+  - `saadi-brochure.pdf`
+  - `course-outline.pdf`
+  - `annual-report.pdf`
+- If file names change, update links in `/<lang>/downloads.html`.
 
-## Upload to STRATO/shared host via FTP
-1. Open your FTP client (e.g., FileZilla).
-2. Connect using host credentials from provider.
-3. Upload **all files/folders** to the web root (often `htdocs` or `public_html`).
-4. Ensure `index.html` is in the root upload directory.
-5. Test `/` (auto-redirect), `/language.html`, `/fa/`, `/de/`, `/en/` in browser.
+## Update search index JSON
+- Edit `data/fa-search.json`, `data/de-search.json`, `data/en-search.json` manually.
+- Each entry uses:
+  - `title`
+  - `url`
+  - `excerpt`
+  - `keywords`
+- Keep URLs absolute from root (e.g. `/fa/events/index.html`).
 
-## GitHub setup
-```bash
-git init
-git add .
-git commit -m "Initial static website"
-git branch -M main
-git remote add origin <your-repo-url>
-git push -u origin main
-```
+## Privacy-friendly defaults
+- No Google Maps embeds.
+- No analytics/tracking by default.
+- Newsletter UI is local-only; there is currently no server-side newsletter processing.
 
-## Future options
-- Add a lightweight CMS later (headless CMS + static pages).
-- Or migrate to WordPress while preserving structure and multilingual IA.
+## Form setup
+- Configure Formspree endpoint in `js/form.js` for contact forms.
 
-## Favicon
-- Placeholder file in `assets/favicon/favicon.svg`.
-- Generate final favicon set from your logo using a favicon generator and replace placeholder files.
-
-## Make it live with GitHub Pages (GitHub Actions)
-This repository includes a workflow at `.github/workflows/deploy-pages.yml` that deploys the site to GitHub Pages on every push to `main`.
-
-### One-time setup
-1. Push this repository to GitHub.
-2. In GitHub, open **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push to `main` (or run the workflow manually from **Actions** tab).
-
-### Live URL
-- Project site: `https://<your-github-username>.github.io/<repo-name>/`
-- If this repo is named `<your-github-username>.github.io`, the URL is `https://<your-github-username>.github.io/`
-
-### Notes
-- The workflow uploads the repository root as a static artifact and deploys it directly.
-- `.nojekyll` is included so GitHub Pages serves files without Jekyll processing.
+## Deploy (FTP / STRATO)
+1. Upload all files to the web root (`htdocs`/`public_html`).
+2. Ensure `index.html` is in root.
+3. Test `/fa/`, `/de/`, `/en/`, and nested pages like `/fa/news/...`.
