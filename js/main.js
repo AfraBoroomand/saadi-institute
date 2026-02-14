@@ -92,12 +92,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const current = getCurrentLangAndFile();
   const langPack = i18n[current.lang] || i18n.en;
+  const storage = {
+    get(key) {
+      try { return window.localStorage.getItem(key); } catch (_) { return null; }
+    },
+    set(key, value) {
+      try { window.localStorage.setItem(key, value); } catch (_) {}
+    },
+    remove(key) {
+      try { window.localStorage.removeItem(key); } catch (_) {}
+    }
+  };
 
   const languageChooser = document.querySelector('[data-language-chooser]');
   if (languageChooser) {
     const remember = document.querySelector('#remember-choice');
-    const savedLang = localStorage.getItem('saadi-lang');
-    const rememberLang = localStorage.getItem('saadi-lang-remember') === 'true';
+    const savedLang = storage.get('saadi-lang');
+    const rememberLang = storage.get('saadi-lang-remember') === 'true';
 
     if (remember) remember.checked = rememberLang;
 
@@ -110,11 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       link.addEventListener('click', () => {
         if (remember?.checked) {
-          localStorage.setItem('saadi-lang', lang);
-          localStorage.setItem('saadi-lang-remember', 'true');
+          storage.set('saadi-lang', lang);
+          storage.set('saadi-lang-remember', 'true');
         } else {
-          localStorage.removeItem('saadi-lang');
-          localStorage.setItem('saadi-lang-remember', 'false');
+          storage.remove('saadi-lang');
+          storage.set('saadi-lang-remember', 'false');
         }
       });
     });
@@ -152,6 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   normalizeA11y();
 
+  document.querySelectorAll('.lang-switch').forEach((select) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'lang-buttons';
+    LANGS.forEach((lang) => {
+      const a = document.createElement('a');
+      a.className = `lang-btn${current.lang === lang ? ' active' : ''}`;
+      a.href = current.lang && current.file ? toLangFile(lang, current.file) : toLangHome(lang);
+      a.textContent = lang.toUpperCase();
+      wrap.appendChild(a);
+    });
+    select.insertAdjacentElement('afterend', wrap);
+  });
+
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   if (toggle && nav) {
@@ -173,21 +197,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-switch').forEach((select) => {
     select.addEventListener('change', (e) => {
       const targetLang = e.target.value;
-      if (localStorage.getItem('saadi-lang-remember') === 'true') {
-        localStorage.setItem('saadi-lang', targetLang);
+      if (storage.get('saadi-lang-remember') === 'true') {
+        storage.set('saadi-lang', targetLang);
       }
       if (!current.lang || !current.file) {
         window.location.href = toLangHome(targetLang);
         return;
       }
       const target = toLangFile(targetLang, current.file);
-      fetch(target, { method: 'HEAD' })
-        .then((res) => {
-          window.location.href = res.ok ? target : toLangHome(targetLang);
-        })
-        .catch(() => {
-          window.location.href = toLangHome(targetLang);
-        });
+      window.location.href = target;
     });
   });
 
@@ -298,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveCheck = form.querySelector('[name="newsletter-save"]');
     const message = form.querySelector('.newsletter-message');
     const key = `saadi-newsletter-${current.lang || 'en'}`;
-    const saved = localStorage.getItem(key);
+    const saved = storage.get(key);
     if (saved && emailInput) emailInput.value = saved;
 
     form.addEventListener('submit', (e) => {
@@ -308,9 +326,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       if (saveCheck?.checked && emailInput?.value) {
-        localStorage.setItem(key, emailInput.value);
+        storage.set(key, emailInput.value);
       } else {
-        localStorage.removeItem(key);
+        storage.remove(key);
       }
       if (message) message.textContent = langPack.thanks;
       if (emailInput && saveCheck?.checked) {

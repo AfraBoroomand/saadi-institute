@@ -109,6 +109,17 @@ textarea { min-height: 160px; }
   text-decoration-thickness: 2px;
 }
 .header-inner .lang-switch, .header-inner .search-trigger { margin-inline-start: .4rem; }
+.lang-buttons { display: inline-flex; gap: .3rem; margin-inline-start: .4rem; }
+.lang-btn {
+  display: inline-block;
+  padding: .28rem .5rem;
+  border-radius: 8px;
+  border: 1px solid #ffffff55;
+  color: #fff;
+  font-size: .82rem;
+  text-decoration: none;
+}
+.lang-btn.active { background: var(--gold); color: #111; border-color: var(--gold); }
 .search-trigger { border: 1px solid #ffffff55; background: transparent; color: #fff; border-radius: 8px; padding: .35rem .55rem; cursor: pointer; }
 .search-modal { position: fixed; inset: 0; background: #00000066; z-index: 4000; display: grid; place-items: start center; padding-top: 10vh; }
 .search-panel { background: #fff; width: min(700px, 92%); border-radius: var(--radius); padding: 1rem; }
