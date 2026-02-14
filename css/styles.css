@@ -73,7 +73,7 @@ img { max-width: 100%; display: block; }
   border: 0;
   background: transparent;
 }
-.nav-toggle { display: none !important; }
+.nav-toggle { display: none; }
 .main-nav { flex: 1 1 520px; min-width: 260px; }
 .main-nav ul { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; gap: .35rem .8rem; align-items: center; }
 .main-nav a {
