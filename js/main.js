@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const LANGS = ['fa', 'de', 'en'];
 
-  // Some hosts serve /fa, /de, /en without appending a trailing slash.
-  // In that case, relative links resolve from "/" and break navigation.
-  if (LANGS.includes(window.location.pathname.replace(/^\/+|\/+$/g, ''))) {
-    window.location.replace(`${window.location.pathname}/`);
+  // Some hosts serve /fa, /de, /en (or /subdir/fa, etc.) without trailing slash.
+  // In that case, relative links can resolve incorrectly and cause 404 navigation.
+  const pathnameNoTrailing = window.location.pathname.replace(/\/+$/, '');
+  const langTailPattern = new RegExp(`/(?:${LANGS.join('|')})$`);
+  if (langTailPattern.test(pathnameNoTrailing) && !window.location.pathname.endsWith('/')) {
+    window.location.replace(`${pathnameNoTrailing}/${window.location.search}${window.location.hash}`);
     return;
   }
 
@@ -88,16 +90,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return { lang: parts[langIndex], file };
   };
 
-  const toLangHome = (lang) => `${getBasePrefix()}/${lang}/`;
-  const toLangFile = (lang, file) => `${getBasePrefix()}/${lang}/${file}`;
+  const basePrefix = getBasePrefix();
+  const stripBasePrefix = (pathname) => {
+    if (!basePrefix) return pathname;
+    if (pathname === basePrefix) return '/';
+    if (pathname.startsWith(`${basePrefix}/`)) return pathname.slice(basePrefix.length);
+    return pathname;
+  };
+  const toLangHome = (lang) => `${basePrefix}/${lang}/`.replace(/\/{2,}/g, '/');
+  const toLangFile = (lang, file) => `${basePrefix}/${lang}/${file}`.replace(/\/{2,}/g, '/');
   const toPrefixedUrl = (url) => {
     if (!url || typeof url !== 'string') return url;
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:') || url.startsWith('#')) return url;
-    if (url.startsWith('/')) return `${getBasePrefix()}${url}`;
+    if (url.startsWith('/')) return `${basePrefix}${url}`;
     return url;
   };
 
   const current = getCurrentLangAndFile();
+  const getLangRelativeHref = (target) => {
+    if (!current.file) return target;
+    const depth = Math.max(0, current.file.split('/').length - 1);
+    return depth ? `${'../'.repeat(depth)}${target}` : target;
+  };
   const langPack = i18n[current.lang] || i18n.en;
   const storage = {
     get(key) {
@@ -155,14 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const resolved = new URL(rawHref, window.location.href);
       if (resolved.origin !== window.location.origin) return;
 
+      const resolvedPathWithinBase = stripBasePrefix(resolved.pathname);
       const langPrefix = `/${current.lang}/`;
-      if (resolved.pathname.startsWith(langPrefix)) return;
-      if (LANGS.some((lang) => resolved.pathname.startsWith(`/${lang}/`))) return;
+      if (resolvedPathWithinBase.startsWith(langPrefix)) return;
+      if (LANGS.some((lang) => resolvedPathWithinBase.startsWith(`/${lang}/`))) return;
 
       e.preventDefault();
-      const fixedPath = `${langPrefix}${resolved.pathname.replace(/^\/+/, '')}`;
-      const fixed = `${fixedPath}${resolved.search}${resolved.hash}`;
-      window.location.assign(`${getBasePrefix()}${fixed}`);
+      const fixedPath = `${basePrefix}${langPrefix}${resolvedPathWithinBase.replace(/^\/+/, '')}`.replace(/\/{2,}/g, '/');
+      window.location.assign(`${fixedPath}${resolved.search}${resolved.hash}`);
     });
   }
 
@@ -408,13 +422,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const footerLinks = document.querySelector('.footer-links');
   if (footerLinks && current.lang) {
-    const existing = new Set([...footerLinks.querySelectorAll('a')].map((a) => a.getAttribute('href')));
-    [['downloads.html', langPack.downloads], ['events/', langPack.events], ['news/', langPack.news]].forEach(([href, label]) => {
-      if (!existing.has(href)) {
+    const existing = new Set([...footerLinks.querySelectorAll('a')].map((a) => {
+      const href = a.getAttribute('href') || '';
+      try {
+        return new URL(href, window.location.href).pathname;
+      } catch (_) {
+        return href;
+      }
+    }));
+    [['downloads.html', langPack.downloads], ['events/', langPack.events], ['news/', langPack.news]].forEach(([target, label]) => {
+      const href = getLangRelativeHref(target);
+      const resolvedPath = new URL(href, window.location.href).pathname;
+      if (!existing.has(resolvedPath)) {
         const a = document.createElement('a');
         a.href = href;
         a.textContent = label;
         footerLinks.appendChild(a);
+        existing.add(resolvedPath);
       }
     });
   }
