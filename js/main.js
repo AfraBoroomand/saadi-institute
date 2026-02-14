@@ -12,7 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
       downloads: 'دانلودها',
       events: 'رویدادها',
       news: 'اخبار',
-      thanks: 'سپاسگزاریم — خبرنامه به‌زودی فعال می‌شود. می‌توانید از طریق ایمیل نیز با ما در تماس باشید.'
+      thanks: 'سپاسگزاریم. خبرنامه به زودی فعال می شود. در حال حاضر می توانید از ایمیل استفاده کنید.',
+      menu: 'منو',
+      nav: 'پیمایش اصلی',
+      language: 'زبان',
+      skip: 'پرش به محتوای اصلی',
+      copy: 'کپی پیوند',
+      copied: 'کپی شد',
+      copyFailed: 'کپی نشد',
+      minutes: 'دقیقه'
     },
     de: {
       search: 'Suche',
@@ -24,7 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
       downloads: 'Downloads',
       events: 'Veranstaltungen',
       news: 'News',
-      thanks: 'Vielen Dank — der Newsletter wird bald verfügbar sein. Sie können uns auch per E-Mail kontaktieren.'
+      thanks: 'Vielen Dank. Der Newsletter wird in Kuerze aktiviert. Bis dahin erreichen Sie uns per E-Mail.',
+      menu: 'Menue',
+      nav: 'Hauptnavigation',
+      language: 'Sprache',
+      skip: 'Zum Inhalt springen',
+      copy: 'Link kopieren',
+      copied: 'Kopiert',
+      copyFailed: 'Kopieren fehlgeschlagen',
+      minutes: 'Min.'
     },
     en: {
       search: 'Search',
@@ -36,7 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
       downloads: 'Downloads',
       events: 'Events',
       news: 'News',
-      thanks: 'Thank you — newsletter will be available soon. You can also contact us via email.'
+      thanks: 'Thanks. The newsletter will be activated soon. You can contact us by email in the meantime.',
+      menu: 'Menu',
+      nav: 'Main navigation',
+      language: 'Language',
+      skip: 'Skip to main content',
+      copy: 'Copy link',
+      copied: 'Copied',
+      copyFailed: 'Copy failed',
+      minutes: 'min read'
     }
   };
 
@@ -59,8 +83,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toLangHome = (lang) => `${getBasePrefix()}/${lang}/`;
   const toLangFile = (lang, file) => `${getBasePrefix()}/${lang}/${file}`;
+
   const current = getCurrentLangAndFile();
   const langPack = i18n[current.lang] || i18n.en;
+
+  const normalizeA11y = () => {
+    const main = document.querySelector('main');
+    if (main && !main.id) main.id = 'main';
+
+    let skip = document.querySelector('.skip-link');
+    if (!skip && main) {
+      skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#main';
+      document.body.insertAdjacentElement('afterbegin', skip);
+    }
+    if (skip) skip.textContent = langPack.skip;
+
+    const nav = document.querySelector('.main-nav');
+    if (nav) {
+      nav.setAttribute('aria-label', langPack.nav);
+      if (!nav.id) nav.id = 'main-navigation';
+    }
+
+    const toggle = document.querySelector('.nav-toggle');
+    if (toggle) {
+      toggle.setAttribute('aria-label', langPack.menu);
+      toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') || 'false');
+      if (nav) toggle.setAttribute('aria-controls', nav.id);
+    }
+
+    const langSelect = document.querySelector('.lang-switch');
+    if (langSelect) langSelect.setAttribute('aria-label', langPack.language);
+  };
+
+  normalizeA11y();
 
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
@@ -72,23 +129,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (nav && current.file) {
+    const normalizedCurrent = current.file.replace(/index\.html$/, '');
     nav.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href') || '';
-      if (href && current.file.startsWith(href)) link.classList.add('active');
+      const href = (link.getAttribute('href') || '').replace(/^\.\//, '');
+      const normalizedHref = href.replace(/index\.html$/, '');
+      if (normalizedHref && normalizedCurrent.startsWith(normalizedHref)) link.classList.add('active');
     });
   }
 
   document.querySelectorAll('.lang-switch').forEach((select) => {
     select.addEventListener('change', (e) => {
       const targetLang = e.target.value;
-      if (!current.lang) {
+      if (!current.lang || !current.file) {
         window.location.href = toLangHome(targetLang);
         return;
       }
       const target = toLangFile(targetLang, current.file);
       fetch(target, { method: 'HEAD' })
-        .then((r) => { window.location.href = r.ok ? target : toLangHome(targetLang); })
-        .catch(() => { window.location.href = toLangHome(targetLang); });
+        .then((res) => {
+          window.location.href = res.ok ? target : toLangHome(targetLang);
+        })
+        .catch(() => {
+          window.location.href = toLangHome(targetLang);
+        });
     });
   });
 
@@ -110,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.type = 'button';
     btn.className = 'search-trigger';
     btn.setAttribute('aria-label', langPack.search);
-    btn.textContent = '🔍';
+    btn.textContent = langPack.search;
     langSelect.insertAdjacentElement('afterend', btn);
 
     const modal = document.createElement('div');
@@ -141,19 +204,26 @@ document.addEventListener('DOMContentLoaded', () => {
         results.innerHTML = '';
         return;
       }
-      const matches = index.filter((item) => `${item.title} ${item.excerpt} ${item.keywords}`.toLowerCase().includes(q)).slice(0, 8);
+      const matches = index
+        .filter((item) => `${item.title} ${item.excerpt} ${item.keywords}`.toLowerCase().includes(q))
+        .slice(0, 8);
+
       if (!matches.length) {
         results.innerHTML = `<p>${langPack.noResults}</p>`;
         return;
       }
+
       results.innerHTML = `<h3>${langPack.resultsTitle}</h3>${matches.map((item) => `<article class="search-hit"><a href="${item.url}">${item.title}</a><p>${item.excerpt}</p></article>`).join('')}`;
     };
+
+    const getFocusables = () => [...modal.querySelectorAll('button, input, a, [tabindex]:not([tabindex="-1"])')];
 
     const openModal = () => {
       modal.hidden = false;
       document.body.classList.add('modal-open');
-      setTimeout(() => input.focus(), 20);
+      setTimeout(() => input.focus(), 0);
     };
+
     const closeModal = () => {
       modal.hidden = true;
       document.body.classList.remove('modal-open');
@@ -162,16 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !modal.hidden) closeModal();
       if (e.key === 'Tab' && !modal.hidden) {
-        const focusables = modal.querySelectorAll('button, input, a, [tabindex]:not([tabindex="-1"])');
+        const focusables = getFocusables();
         if (!focusables.length) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
 
@@ -189,14 +267,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!consent?.checked) {
-        message.textContent = consent.dataset.error || 'Please accept privacy consent.';
+      if (!consent || !consent.checked) {
+        if (message) message.textContent = consent?.dataset.error || 'Consent is required.';
         return;
       }
-      if (saveCheck?.checked && emailInput?.value) localStorage.setItem(key, emailInput.value);
-      else localStorage.removeItem(key);
-      message.textContent = langPack.thanks;
-      form.reset();
+      if (saveCheck?.checked && emailInput?.value) {
+        localStorage.setItem(key, emailInput.value);
+      } else {
+        localStorage.removeItem(key);
+      }
+      if (message) message.textContent = langPack.thanks;
+      if (emailInput && saveCheck?.checked) {
+        const cached = emailInput.value;
+        form.reset();
+        emailInput.value = cached;
+      } else {
+        form.reset();
+      }
     });
   });
 
@@ -205,25 +292,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!target) return;
     const words = target.textContent.trim().split(/\s+/).length;
     const minutes = Math.max(1, Math.round(words / 220));
-    el.textContent = `${minutes} min`;
+    el.textContent = current.lang === 'fa' ? `${minutes} ${langPack.minutes}` : `${minutes} ${langPack.minutes}`;
   });
 
   document.querySelectorAll('[data-copy-url]').forEach((btn) => {
+    if (!btn.textContent.trim()) btn.textContent = langPack.copy;
     btn.addEventListener('click', async () => {
+      const original = btn.textContent;
       try {
         await navigator.clipboard.writeText(window.location.href);
-        btn.textContent = btn.dataset.copied || 'Copied';
+        btn.textContent = btn.dataset.copied || langPack.copied;
       } catch (_) {
-        btn.textContent = btn.dataset.failed || 'Copy failed';
+        btn.textContent = btn.dataset.failed || langPack.copyFailed;
       }
+      setTimeout(() => {
+        btn.textContent = original || langPack.copy;
+      }, 1400);
     });
+  });
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    if ((link.textContent || '').trim().toLowerCase() === 'mailto') {
+      link.textContent = link.getAttribute('href').replace('mailto:', '');
+    }
   });
 
   const footerLinks = document.querySelector('.footer-links');
   if (footerLinks && current.lang) {
-    const existing = [...footerLinks.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    const existing = new Set([...footerLinks.querySelectorAll('a')].map((a) => a.getAttribute('href')));
     [['downloads.html', langPack.downloads], ['events/', langPack.events], ['news/', langPack.news]].forEach(([href, label]) => {
-      if (!existing.includes(href)) {
+      if (!existing.has(href)) {
         const a = document.createElement('a');
         a.href = href;
         a.textContent = label;

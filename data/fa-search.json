@@ -1,74 +1,16 @@
 [
-  {
-    "title": "Home",
-    "url": "/fa/index.html",
-    "excerpt": "Main overview",
-    "keywords": "home institute"
-  },
-  {
-    "title": "About",
-    "url": "/fa/about.html",
-    "excerpt": "About institute",
-    "keywords": "about"
-  },
-  {
-    "title": "Goals",
-    "url": "/fa/goals.html",
-    "excerpt": "Goals and vision",
-    "keywords": "goals vision"
-  },
-  {
-    "title": "Activity",
-    "url": "/fa/activity.html",
-    "excerpt": "Activity areas",
-    "keywords": "activity programs"
-  },
-  {
-    "title": "Education",
-    "url": "/fa/education.html",
-    "excerpt": "Education",
-    "keywords": "education courses"
-  },
-  {
-    "title": "Publications",
-    "url": "/fa/publications.html",
-    "excerpt": "Catalog",
-    "keywords": "publications books"
-  },
-  {
-    "title": "Bridge",
-    "url": "/fa/bridge.html",
-    "excerpt": "Cultural bridge",
-    "keywords": "bridge culture"
-  },
-  {
-    "title": "Contact",
-    "url": "/fa/contact.html",
-    "excerpt": "Contact form",
-    "keywords": "contact email"
-  },
-  {
-    "title": "Privacy",
-    "url": "/fa/privacy.html",
-    "excerpt": "Privacy notice",
-    "keywords": "privacy data"
-  },
-  {
-    "title": "Downloads",
-    "url": "/fa/downloads.html",
-    "excerpt": "PDF resources",
-    "keywords": "downloads pdf"
-  },
-  {
-    "title": "Events",
-    "url": "/fa/events/index.html",
-    "excerpt": "Events list",
-    "keywords": "events workshop conference"
-  },
-  {
-    "title": "News",
-    "url": "/fa/news/index.html",
-    "excerpt": "News list",
-    "keywords": "news blog updates"
-  }
+  {"title":"خانه","url":"/fa/index.html","excerpt":"نمای کلی و مطالب به‌روز","keywords":"خانه انستیتو سعدی برلین"},
+  {"title":"درباره ما","url":"/fa/about.html","excerpt":"معرفی و ماموریت","keywords":"درباره ماموریت"},
+  {"title":"اهداف و چشم‌انداز","url":"/fa/goals.html","excerpt":"اهداف راهبردی","keywords":"اهداف چشم انداز"},
+  {"title":"حوزه‌های فعالیت","url":"/fa/activity.html","excerpt":"آموزش، فرهنگ و انتشارات","keywords":"فعالیت برنامه ها فرهنگ"},
+  {"title":"آموزش و ادغام","url":"/fa/education.html","excerpt":"دوره‌ها و پشتیبانی ادغام","keywords":"آموزش ادغام دوره"},
+  {"title":"پل فرهنگی","url":"/fa/bridge.html","excerpt":"گفت‌وگوی میان‌فرهنگی","keywords":"پل فرهنگی گفت و گو"},
+  {"title":"انتشارات","url":"/fa/publications.html","excerpt":"پژوهش و انتشارات","keywords":"انتشارات پژوهش"},
+  {"title":"اطلاعات و تماس","url":"/fa/contact.html","excerpt":"فرم تماس و اطلاعات حقوقی","keywords":"تماس ایمیل"},
+  {"title":"دانلودها","url":"/fa/downloads.html","excerpt":"منابع PDF","keywords":"دانلود بروشور گزارش"},
+  {"title":"رویدادها","url":"/fa/events/index.html","excerpt":"رویدادهای پیش‌رو","keywords":"رویداد کارگاه همایش سالن"},
+  {"title":"اخبار","url":"/fa/news/index.html","excerpt":"آخرین خبرها","keywords":"اخبار به روزرسانی"},
+  {"title":"آغاز 2026","url":"/fa/news/2026-01-welcome.html","excerpt":"نقشه راه سال جدید","keywords":"آغاز نقشه راه 2026"},
+  {"title":"گسترش برنامه‌های آموزشی","url":"/fa/news/2026-02-programs.html","excerpt":"فرمت‌های جدید آموزشی","keywords":"برنامه آموزشی"},
+  {"title":"پل فرهنگی در عمل","url":"/fa/news/2026-02-cultural-bridge.html","excerpt":"نمونه همکاری نهادی","keywords":"پل فرهنگی همکاری برلین"}
 ]

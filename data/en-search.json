@@ -1,74 +1,16 @@
 [
-  {
-    "title": "Home",
-    "url": "/en/index.html",
-    "excerpt": "Main overview",
-    "keywords": "home institute"
-  },
-  {
-    "title": "About",
-    "url": "/en/about.html",
-    "excerpt": "About institute",
-    "keywords": "about"
-  },
-  {
-    "title": "Goals",
-    "url": "/en/goals.html",
-    "excerpt": "Goals and vision",
-    "keywords": "goals vision"
-  },
-  {
-    "title": "Activity",
-    "url": "/en/activity.html",
-    "excerpt": "Activity areas",
-    "keywords": "activity programs"
-  },
-  {
-    "title": "Education",
-    "url": "/en/education.html",
-    "excerpt": "Education",
-    "keywords": "education courses"
-  },
-  {
-    "title": "Publications",
-    "url": "/en/publications.html",
-    "excerpt": "Catalog",
-    "keywords": "publications books"
-  },
-  {
-    "title": "Bridge",
-    "url": "/en/bridge.html",
-    "excerpt": "Cultural bridge",
-    "keywords": "bridge culture"
-  },
-  {
-    "title": "Contact",
-    "url": "/en/contact.html",
-    "excerpt": "Contact form",
-    "keywords": "contact email"
-  },
-  {
-    "title": "Privacy",
-    "url": "/en/privacy.html",
-    "excerpt": "Privacy notice",
-    "keywords": "privacy data"
-  },
-  {
-    "title": "Downloads",
-    "url": "/en/downloads.html",
-    "excerpt": "PDF resources",
-    "keywords": "downloads pdf"
-  },
-  {
-    "title": "Events",
-    "url": "/en/events/index.html",
-    "excerpt": "Events list",
-    "keywords": "events workshop conference"
-  },
-  {
-    "title": "News",
-    "url": "/en/news/index.html",
-    "excerpt": "News list",
-    "keywords": "news blog updates"
-  }
+  {"title":"Home","url":"/en/index.html","excerpt":"Overview and current highlights","keywords":"home saadi berlin nonprofit"},
+  {"title":"About","url":"/en/about.html","excerpt":"Institution profile and mission","keywords":"about mission nonprofit"},
+  {"title":"Vision & Goals","url":"/en/goals.html","excerpt":"Strategic goals and values","keywords":"vision goals strategy"},
+  {"title":"Fields of Activity","url":"/en/activity.html","excerpt":"Education, culture, and publications","keywords":"activity programs culture"},
+  {"title":"Education & Integration","url":"/en/education.html","excerpt":"Courses and integration support","keywords":"education integration courses"},
+  {"title":"Cultural Bridge","url":"/en/bridge.html","excerpt":"Intercultural dialogue work","keywords":"bridge dialogue culture"},
+  {"title":"Publications","url":"/en/publications.html","excerpt":"Research and publication stream","keywords":"publications research translation"},
+  {"title":"Legal & Contact","url":"/en/contact.html","excerpt":"Contact form and legal details","keywords":"contact legal email"},
+  {"title":"Downloads","url":"/en/downloads.html","excerpt":"PDF resources","keywords":"downloads brochure report"},
+  {"title":"Events","url":"/en/events/index.html","excerpt":"Upcoming events","keywords":"events workshop conference salon"},
+  {"title":"News","url":"/en/news/index.html","excerpt":"Latest updates","keywords":"news updates announcements"},
+  {"title":"Welcome to 2026","url":"/en/news/2026-01-welcome.html","excerpt":"Roadmap and priorities","keywords":"welcome roadmap 2026"},
+  {"title":"Education Programs Expanded","url":"/en/news/2026-02-programs.html","excerpt":"New learning formats","keywords":"programs education workshops"},
+  {"title":"Cultural Bridge in Action","url":"/en/news/2026-02-cultural-bridge.html","excerpt":"Partner collaboration highlights","keywords":"bridge partnerships berlin"}
 ]
