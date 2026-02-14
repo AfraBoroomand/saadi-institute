@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const parts = window.location.pathname.split('/').filter(Boolean);
     let langIndex = parts.findIndex((p) => LANGS.includes(p));
     if (langIndex === -1) return { lang: null, file: null };
-    const file = parts[langIndex + 1] || 'index.html';
+    const file = parts.slice(langIndex + 1).join('/') || 'index.html';
     return { lang: parts[langIndex], file };
   };
 
