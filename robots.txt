@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /*/404.html
+Disallow: /*/events/event-template.html
 
+Host: saadi-institute.de
 Sitemap: https://saadi-institute.de/sitemap.xml

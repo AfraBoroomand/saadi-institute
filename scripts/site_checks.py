@@ -62,6 +62,24 @@ def main() -> int:
             if '<h1' not in text:
                 errors.append(f"Missing h1: {rel}")
 
+        # Baseline SEO metadata checks for all pages.
+        required_markers = (
+            'meta name="description"',
+            'meta name="robots"',
+            'property="og:title"',
+            'property="og:description"',
+            'property="og:url"',
+            'property="og:type"',
+            'property="og:image"',
+            'name="twitter:card"',
+            'name="twitter:title"',
+            'name="twitter:description"',
+            'name="twitter:image"',
+        )
+        for marker in required_markers:
+            if marker not in text:
+                errors.append(f"Missing SEO tag ({marker}): {rel}")
+
         parser = LinkParser()
         parser.feed(text)
         for href in parser.links:
