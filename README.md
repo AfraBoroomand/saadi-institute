@@ -51,3 +51,20 @@ git push -u origin main
 ## Favicon
 - Placeholder file in `assets/favicon/favicon.svg`.
 - Generate final favicon set from your logo using a favicon generator and replace placeholder files.
+
+## Make it live with GitHub Pages (GitHub Actions)
+This repository includes a workflow at `.github/workflows/deploy-pages.yml` that deploys the site to GitHub Pages on every push to `main`.
+
+### One-time setup
+1. Push this repository to GitHub.
+2. In GitHub, open **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to `main` (or run the workflow manually from **Actions** tab).
+
+### Live URL
+- Project site: `https://<your-github-username>.github.io/<repo-name>/`
+- If this repo is named `<your-github-username>.github.io`, the URL is `https://<your-github-username>.github.io/`
+
+### Notes
+- The workflow uploads the repository root as a static artifact and deploys it directly.
+- `.nojekyll` is included so GitHub Pages serves files without Jekyll processing.
