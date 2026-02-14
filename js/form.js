@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
   const notice = document.querySelector('[data-form-notice]');
+  const fallbackEmail = (form.dataset.fallbackEmail || 'info@saadi-institute.de').trim();
   const endpoint = (window.SAADI_CONFIG.formspreeEndpoint || '').trim();
   const placeholder = endpoint.includes('XXXXXXXX');
   if (placeholder && notice) {
@@ -23,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!data.message?.trim()) { setError('message', form.dataset.errRequired); valid = false; }
     if (!valid) return;
     if (placeholder) {
+      const subject = encodeURIComponent(data.subject.trim());
+      const body = encodeURIComponent(`${data.message.trim()}\n\n${data.name.trim()} <${data.email.trim()}>`);
+      window.location.href = `mailto:${fallbackEmail}?subject=${subject}&body=${body}`;
       notice.textContent = form.dataset.noEndpoint;
       return;
     }
