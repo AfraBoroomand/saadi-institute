@@ -57,7 +57,15 @@ img { max-width: 100%; display: block; }
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: .9rem; padding: .8rem 0; }
 .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--ink-900); text-decoration: none; font-weight: 600; }
-.brand img { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ccb696; background: #fff; }
+.brand img {
+  width: auto;
+  height: 42px;
+  max-width: 168px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 0;
+  background: transparent;
+}
 .nav-toggle { display: none; background: #f8f2e8; border: 1px solid var(--line); border-radius: 8px; padding: .3rem .55rem; color: var(--ink-900); }
 .main-nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: .85rem; }
 .main-nav a { text-decoration: none; color: var(--ink-700); font-size: .97rem; }
