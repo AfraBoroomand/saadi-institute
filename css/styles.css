@@ -133,5 +133,23 @@ body.modal-open { overflow: hidden; }
 .impact-item strong { display: block; color: var(--blue); font-size: 1.6rem; line-height: 1.15; }
 .partners-placeholder { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; }
 .partner-tile { border: 1px dashed #d5c8ac; border-radius: 12px; background: #fffdf8; min-height: 78px; display: grid; place-items: center; color: #7d7060; font-weight: 600; }
+.landmark-strip {
+  background:
+    linear-gradient(90deg, #1e2a38e8, #1f4d3adb),
+    radial-gradient(circle at 20% 30%, #ffffff22, transparent 40%),
+    radial-gradient(circle at 80% 70%, #c8a75a33, transparent 45%);
+  color: #fff;
+}
+.landmark-strip .icon-list li {
+  background: #ffffff14;
+  border-color: #ffffff2e;
+}
+.landmark-strip .icon-list strong { color: #ffefcc; }
+.trio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.trio-card { border: 1px solid #e7dfcf; border-radius: 14px; padding: .8rem; background: #fff; }
+.trio-card img { height: 220px; width: 100%; object-fit: cover; border-radius: 10px; border: 1px solid #ddd4c1; }
+.trio-card h3 { margin: .65rem 0 .35rem; color: var(--blue); }
+.quote-saadi { font-style: italic; color: #4d3c1a; }
 @media (max-width: 900px) { .search-modal { padding-top: 4vh; } }
 @media (max-width: 900px) { .impact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .trio-grid { grid-template-columns: 1fr; } }

@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="css/styles.css">
   <script>
     (function () {
+      var path = window.location.pathname;
       var langs = ['fa', 'de', 'en'];
       var remember = localStorage.getItem('saadi-lang-remember') === 'true';
       var lang = localStorage.getItem('saadi-lang');
-      var target = remember && langs.indexOf(lang) !== -1 ? lang + '/' : 'fa/';
-      window.location.replace(target);
+      if (path.slice(-11) === '/index.html') path = path.slice(0, -10);
+      if (path[path.length - 1] !== '/') {
+        window.location.replace(path + '/' + window.location.search + window.location.hash);
+        return;
+      }
+      var target = remember && langs.indexOf(lang) !== -1 ? (lang + '/') : 'fa/';
+      window.location.replace(path + target);
     }());
   </script>
 </head>

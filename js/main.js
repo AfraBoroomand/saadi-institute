@@ -83,9 +83,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toLangHome = (lang) => `${getBasePrefix()}/${lang}/`;
   const toLangFile = (lang, file) => `${getBasePrefix()}/${lang}/${file}`;
+  const toPrefixedUrl = (url) => {
+    if (!url || typeof url !== 'string') return url;
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:') || url.startsWith('#')) return url;
+    if (url.startsWith('/')) return `${getBasePrefix()}${url}`;
+    return url;
+  };
 
   const current = getCurrentLangAndFile();
   const langPack = i18n[current.lang] || i18n.en;
+
+  const languageChooser = document.querySelector('[data-language-chooser]');
+  if (languageChooser) {
+    const remember = document.querySelector('#remember-choice');
+    const savedLang = localStorage.getItem('saadi-lang');
+    const rememberLang = localStorage.getItem('saadi-lang-remember') === 'true';
+
+    if (remember) remember.checked = rememberLang;
+
+    languageChooser.querySelectorAll('[data-lang]').forEach((link) => {
+      const lang = link.getAttribute('data-lang');
+      if (!LANGS.includes(lang)) return;
+      if (savedLang === lang) {
+        link.classList.remove('secondary');
+        link.classList.add('primary');
+      }
+      link.addEventListener('click', () => {
+        if (remember?.checked) {
+          localStorage.setItem('saadi-lang', lang);
+          localStorage.setItem('saadi-lang-remember', 'true');
+        } else {
+          localStorage.removeItem('saadi-lang');
+          localStorage.setItem('saadi-lang-remember', 'false');
+        }
+      });
+    });
+  }
 
   const normalizeA11y = () => {
     const main = document.querySelector('main');
@@ -140,6 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-switch').forEach((select) => {
     select.addEventListener('change', (e) => {
       const targetLang = e.target.value;
+      if (localStorage.getItem('saadi-lang-remember') === 'true') {
+        localStorage.setItem('saadi-lang', targetLang);
+      }
       if (!current.lang || !current.file) {
         window.location.href = toLangHome(targetLang);
         return;
@@ -213,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      results.innerHTML = `<h3>${langPack.resultsTitle}</h3>${matches.map((item) => `<article class="search-hit"><a href="${item.url}">${item.title}</a><p>${item.excerpt}</p></article>`).join('')}`;
+      results.innerHTML = `<h3>${langPack.resultsTitle}</h3>${matches.map((item) => `<article class="search-hit"><a href="${toPrefixedUrl(item.url)}">${item.title}</a><p>${item.excerpt}</p></article>`).join('')}`;
     };
 
     const getFocusables = () => [...modal.querySelectorAll('button, input, a, [tabindex]:not([tabindex="-1"])')];
