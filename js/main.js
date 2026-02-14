@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const LANGS = ['fa', 'de', 'en'];
 
+  // Some hosts serve /fa, /de, /en without appending a trailing slash.
+  // In that case, relative links resolve from "/" and break navigation.
+  if (LANGS.includes(window.location.pathname.replace(/^\/+|\/+$/g, ''))) {
+    window.location.replace(`${window.location.pathname}/`);
+    return;
+  }
+
   const i18n = {
     fa: {
       search: 'جستجو',
@@ -128,6 +135,34 @@ document.addEventListener('DOMContentLoaded', () => {
           storage.set('saadi-lang-remember', 'false');
         }
       });
+    });
+  }
+
+  // Guard relative link navigation so language pages still route correctly
+  // even when the current URL was loaded without trailing slash normalization.
+  if (current.lang) {
+    document.addEventListener('click', (e) => {
+      const anchor = e.target instanceof Element ? e.target.closest('a[href]') : null;
+      if (!anchor) return;
+      if (anchor.target === '_blank' || anchor.hasAttribute('download')) return;
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const rawHref = anchor.getAttribute('href') || '';
+      if (!rawHref || rawHref.startsWith('/') || rawHref.startsWith('#')) return;
+      if (rawHref.startsWith('mailto:') || rawHref.startsWith('tel:') || rawHref.startsWith('javascript:')) return;
+      if (/^[a-z][a-z0-9+.-]*:/i.test(rawHref)) return;
+
+      const resolved = new URL(rawHref, window.location.href);
+      if (resolved.origin !== window.location.origin) return;
+
+      const langPrefix = `/${current.lang}/`;
+      if (resolved.pathname.startsWith(langPrefix)) return;
+      if (LANGS.some((lang) => resolved.pathname.startsWith(`/${lang}/`))) return;
+
+      e.preventDefault();
+      const fixedPath = `${langPrefix}${resolved.pathname.replace(/^\/+/, '')}`;
+      const fixed = `${fixedPath}${resolved.search}${resolved.hash}`;
+      window.location.assign(`${getBasePrefix()}${fixed}`);
     });
   }
 
