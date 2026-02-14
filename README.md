@@ -3,7 +3,8 @@
 Production-ready static website (no build step), deployable to shared hosting via FTP.
 
 ## Structure
-- `index.html` language chooser
+- `index.html` root redirect page (sends visitors to remembered language or `/fa/`)
+- `language.html` language chooser
 - `fa/`, `de/`, `en/` full page sets
 - shared assets in `assets/`, styles in `css/`, scripts in `js/`
 
@@ -32,7 +33,7 @@ Production-ready static website (no build step), deployable to shared hosting vi
 2. Connect using host credentials from provider.
 3. Upload **all files/folders** to the web root (often `htdocs` or `public_html`).
 4. Ensure `index.html` is in the root upload directory.
-5. Test `/`, `/fa/`, `/de/`, `/en/` in browser.
+5. Test `/` (auto-redirect), `/language.html`, `/fa/`, `/de/`, `/en/` in browser.
 
 ## GitHub setup
 ```bash
